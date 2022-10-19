@@ -1,8 +1,8 @@
 package com.jsm.jsmapp.data.repositories;
 
 import com.jsm.jsmapp.data.models.Income;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IncomeRepository extends MongoRepository<Income, String> {
+public interface IncomeRepository extends JpaRepository<Income, Long> {
 }
 

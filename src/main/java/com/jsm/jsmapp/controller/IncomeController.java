@@ -13,21 +13,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/income")
-@AllArgsConstructor
-public class IncomeController {
-    private final IncomeService incomeService;
+public record IncomeController(IncomeService incomeService) {
+
     @PostMapping
     public ResponseEntity<?> addIncome(@RequestBody AddIncomeRequest request){
         return ResponseEntity.ok(incomeService.addIncome(request));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getIncome(@PathVariable String id) throws IncomeNotFoundException {
+    public ResponseEntity<?> getIncome(@PathVariable Long id) throws IncomeNotFoundException {
         return ResponseEntity.ok(incomeService.getIncome(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteIncome(@PathVariable String id){
+    public ResponseEntity<?> deleteIncome(@PathVariable Long id){
         return ResponseEntity.ok(incomeService.deleteIncome(id));
     }
     @PatchMapping

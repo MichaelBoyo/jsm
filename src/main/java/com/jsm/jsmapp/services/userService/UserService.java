@@ -8,7 +8,7 @@ import com.jsm.jsmapp.exceptions.UserNotFoundException;
 public interface UserService {
     Response registerUser(UserRequest userRequest);
 
-    UserResponse getUser(String id) throws UserNotFoundException;
+    UserResponse getUser(Long id) throws UserNotFoundException;
 
     Response getCompanyBalance();
 }

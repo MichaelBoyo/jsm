@@ -5,7 +5,6 @@ import com.jsm.jsmapp.data.dtos.GetALlExpenseRequest;
 import com.jsm.jsmapp.data.dtos.UpdateExpenseRequest;
 import com.jsm.jsmapp.exceptions.ExpenseNotFoundException;
 import com.jsm.jsmapp.services.expenseService.ExpenseService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +13,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/expenses")
-@AllArgsConstructor
 @Slf4j
-public class ExpenseController {
-    private final ExpenseService expenseService;
+public record ExpenseController(ExpenseService expenseService) {
     @PostMapping
     public ResponseEntity<?> addExpense(@RequestBody AddExpenseRequest expenseRequest){
         return ResponseEntity.ok(expenseService.addExpense(expenseRequest));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getExpense(@PathVariable String id) throws ExpenseNotFoundException {
+    public ResponseEntity<?> getExpense(@PathVariable Long id) throws ExpenseNotFoundException {
         return ResponseEntity.ok(expenseService.getExpense(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteExpense(@PathVariable String id){
+    public ResponseEntity<?> deleteExpense(@PathVariable Long id){
         return ResponseEntity.ok(expenseService.deleteExpense(id));
     }
     @PatchMapping

@@ -1,7 +1,8 @@
 package com.jsm.jsmapp.data.repositories;
 
 import com.jsm.jsmapp.data.models.Expense;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ExpenseRepository extends MongoRepository<Expense, String> {
+
+public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 }

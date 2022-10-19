@@ -1,25 +1,24 @@
 package com.jsm.jsmapp.data.models;
 
-import lombok.*;
-
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 @Getter
 @Setter
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-public class Expense {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double amount;
-    private String date;
-    private String category;
-    private String postedBy;
-    private String description;
+    private String firstname;
+    private String lastname;
+    private String username;
+    private String email;
+    private String password;
+
 }

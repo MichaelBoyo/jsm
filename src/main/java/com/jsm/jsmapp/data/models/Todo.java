@@ -13,13 +13,12 @@ import javax.persistence.Id;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Expense {
+public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double amount;
     private String date;
-    private String category;
-    private String postedBy;
-    private String description;
+    private String assignedTo;
+    private String assignedBy;
+    private String content;
 }

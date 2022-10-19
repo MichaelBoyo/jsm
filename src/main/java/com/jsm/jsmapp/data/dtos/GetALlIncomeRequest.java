@@ -1,4 +1,4 @@
 package com.jsm.jsmapp.data.dtos;
 
-public record GetALlIncomeRequest(int numberOfItemsPerPage, int pageNumber) {
+public record GetALlIncomeRequest(int noOfPageItems, int pageNum) {
 }

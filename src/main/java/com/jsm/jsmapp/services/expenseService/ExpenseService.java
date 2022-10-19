@@ -14,8 +14,8 @@ import java.util.List;
 public interface ExpenseService {
     Response addExpense(AddExpenseRequest expenseRequest);
     String updateExpense(UpdateExpenseRequest expenseRequest);
-    String deleteExpense(String id);
-    Expense getExpense(String id) throws ExpenseNotFoundException;
+    String deleteExpense(Long id);
+    Expense getExpense(Long id) throws ExpenseNotFoundException;
     Page<Expense> getExpenses(GetALlExpenseRequest expenseRequest);
 
     List<Expense> getAllExpenses();

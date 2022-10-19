@@ -11,7 +11,6 @@ import com.jsm.jsmapp.services.notificationService.NotificationService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -41,22 +40,21 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public String deleteIncome(String id) {
+    public String deleteIncome(Long id) {
         incomeRepository.deleteById(id);
         return "Income deleted successfully";
     }
 
     @Override
-    public Income getIncome(String id) throws IncomeNotFoundException {
+    public Income getIncome(Long id) throws IncomeNotFoundException {
         return incomeRepository.findById(id).orElseThrow(IncomeNotFoundException::new);
     }
 
     @Override
     public Page<Income> getIncomes(GetALlIncomeRequest expenseRequest) {
-        Pageable pageSpecs = PageRequest
-                .of(expenseRequest.pageNumber() - 1,
-                        expenseRequest.numberOfItemsPerPage());
-        return incomeRepository.findAll(pageSpecs);
+
+        return incomeRepository.findAll
+                (Pageable.ofSize(expenseRequest.noOfPageItems()).withPage(expenseRequest.pageNum() -1));
     }
 
     @Override

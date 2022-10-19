@@ -1,5 +1,6 @@
 package com.jsm.jsmapp.services.expenseService;
 
+
 import com.jsm.jsmapp.data.dtos.AddExpenseRequest;
 import com.jsm.jsmapp.data.dtos.GetALlExpenseRequest;
 import com.jsm.jsmapp.data.dtos.Response;
@@ -40,13 +41,13 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public String deleteExpense(String id) {
+    public String deleteExpense(Long id) {
         expenseRepository.deleteById(id);
         return "Expense deleted successfully";
     }
 
     @Override
-    public Expense getExpense(String id) throws ExpenseNotFoundException {
+    public Expense getExpense(Long id) throws ExpenseNotFoundException {
         return expenseRepository.findById(id)
                 .orElseThrow(ExpenseNotFoundException::new);
     }

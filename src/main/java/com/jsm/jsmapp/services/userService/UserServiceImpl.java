@@ -6,7 +6,7 @@ import com.jsm.jsmapp.data.dtos.UserResponse;
 import com.jsm.jsmapp.data.models.Expense;
 import com.jsm.jsmapp.data.models.Income;
 import com.jsm.jsmapp.data.models.Role;
-import com.jsm.jsmapp.data.models.User;
+import com.jsm.jsmapp.data.models.AppUser;
 import com.jsm.jsmapp.data.repositories.UserRepository;
 import com.jsm.jsmapp.exceptions.UserNotFoundException;
 import com.jsm.jsmapp.services.expenseService.ExpenseService;
@@ -31,15 +31,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response registerUser(UserRequest userRequest) {
+        log.info("req ---> {}", userRequest);
         userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-        User user = modelMapper.map(userRequest, User.class);
-        user.setRoles(Set.of(Role.USER, Role.ADMIN));
-        user = userRepository.save(user);
-        return new Response(200, "User registered successfully", user.getId());
+        AppUser appUser = modelMapper.map(userRequest, AppUser.class);
+
+        appUser = userRepository.save(appUser);
+        return new Response(200, "AppUser registered successfully", appUser.getId());
     }
 
     @Override
-    public UserResponse getUser(String id) throws UserNotFoundException {
+    public UserResponse getUser(Long id) throws UserNotFoundException {
         log.info("Getting user with id: {}", id);
         return userRepository.findById(id)
                 .map(UserResponse::new)
